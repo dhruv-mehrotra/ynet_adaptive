@@ -41,12 +41,12 @@ assert os.path.isdir(VAL_IMAGE_PATH), 'raw data dir error'
 
 ## Set up data
 DATA_PATH = os.path.join(args.foldername, args.dataset)
-df_train = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, train_file), protocol = 4) for train_file in args.train_files])
+df_train = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, train_file)) for train_file in args.train_files])
 if args.train_files == args.val_files:
     print(f"Split training set based on given ratio {args.val_ratio}")
     df_train, df_val = split_df_ratio(df_train, args.val_ratio)
 else:
-    df_val = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, val_file), protocol = 4) for val_file in args.val_files])
+    df_val = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, val_file)) for val_file in args.val_files])
 
 df_train = limit_samples(df_train, args.num_train_batches, args.batch_size)
     
