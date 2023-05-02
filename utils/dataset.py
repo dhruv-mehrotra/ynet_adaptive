@@ -394,7 +394,7 @@ def create_vel_dataset(df, vel_ranges, labels, out_dir):
 		vel_range_name = f"{vel_range[0]}_{vel_range[1]}"
 		df_vel["vel_range"] = np.array(vel_range_name).repeat(len(df_vel))
 		out_path = os.path.join(out_dir, f"{vel_range_name}.pkl")
-		df_vel.to_pickle(out_path)
+		df_vel.to_pickle(out_path, protocol = 4)
 
 def create_vel_histograms(df, out_dir):
 	vel_labels = compute_vel_labels(df)
