@@ -28,10 +28,10 @@ TEST_IMAGE_PATH = os.path.join(args.foldername, 'dataset_raw', 'annotations')
 assert os.path.isdir(TEST_IMAGE_PATH), 'raw data dir error'
 DATA_PATH = os.path.join(args.foldername, args.dataset)
 
-df_test = pd.concat([pickle.load(os.path.join(DATA_PATH, test_file)) for test_file in args.val_files])
+df_test = pd.concat([pickle.load(open(os.path.join(DATA_PATH, test_file),'rb')) for test_file in args.val_files])
 _, df_test = split_df_ratio(df_test, args.val_ratio)
 
-model = YNet(obs_len=params['OBS_LEN'], pred_len=params['PRED_LEN'], params=params)
+model = YNet(obs_len=params['OBzS_LEN'], pred_len=params['PRED_LEN'], params=params)
 if args.ckpt is not None:
     if args.train_net == "modulator":
 	    model.model.initialize_style()
