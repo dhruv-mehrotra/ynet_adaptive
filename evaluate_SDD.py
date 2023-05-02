@@ -6,6 +6,7 @@ import os
 from utils.dataset import set_random_seeds, split_df_ratio
 from utils.parser import val_parser
 from utils.write_files import write_csv
+import pickle
 
 tic = time.time()
 args = val_parser()
@@ -27,7 +28,7 @@ TEST_IMAGE_PATH = os.path.join(args.foldername, 'dataset_raw', 'annotations')
 assert os.path.isdir(TEST_IMAGE_PATH), 'raw data dir error'
 DATA_PATH = os.path.join(args.foldername, args.dataset)
 
-df_test = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, test_file)) for test_file in args.val_files])
+df_test = pd.concat([pickle.load(os.path.join(DATA_PATH, test_file)) for test_file in args.val_files])
 _, df_test = split_df_ratio(df_test, args.val_ratio)
 
 model = YNet(obs_len=params['OBS_LEN'], pred_len=params['PRED_LEN'], params=params)
