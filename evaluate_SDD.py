@@ -27,7 +27,7 @@ TEST_IMAGE_PATH = os.path.join(args.foldername, 'dataset_raw', 'annotations')
 assert os.path.isdir(TEST_IMAGE_PATH), 'raw data dir error'
 DATA_PATH = os.path.join(args.foldername, args.dataset)
 
-df_test = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, test_file)) for test_file in args.val_files])
+df_test = pd.concat([pd.read_pickle(os.path.join(DATA_PATH, test_file), protocol = 4) for test_file in args.val_files])
 _, df_test = split_df_ratio(df_test, args.val_ratio)
 
 model = YNet(obs_len=params['OBS_LEN'], pred_len=params['PRED_LEN'], params=params)
