@@ -6,7 +6,7 @@ import os
 from utils.dataset import set_random_seeds, split_df_ratio
 from utils.parser import val_parser
 from utils.write_files import write_csv
-import pickle
+import pickle5 as pickle
 
 tic = time.time()
 args = val_parser()

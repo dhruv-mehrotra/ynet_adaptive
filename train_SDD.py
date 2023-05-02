@@ -6,7 +6,7 @@ import time
 from model import YNet
 from utils.dataset import set_random_seeds, limit_samples, split_df_ratio
 
-import pickle
+import pickle5 as pickle
 from utils.parser import train_parser
 from utils.write_files import write_csv
 
