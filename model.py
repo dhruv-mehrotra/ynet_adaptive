@@ -155,7 +155,7 @@ class YNetTorch(nn.Module):
 		super(YNetTorch, self).__init__()
 
 		if segmentation_model_fp is not None:
-			self.semantic_segmentation = torch.load(segmentation_model_fp, map_location=torch.device('cpu'))
+			self.semantic_segmentation = torch.load(segmentation_model_fp)
 			if use_features_only:
 				self.semantic_segmentation.segmentation_head = nn.Identity()
 				semantic_classes = 16  # instead of classes use number of feature_dim
@@ -478,7 +478,7 @@ class YNet:
 
 
 	def load(self, path):
-		print(self.model.load_state_dict(torch.load(path, map_location=torch.device('cpu')), strict=False))
+		print(self.model.load_state_dict(torch.load(path), strict=False))
 
 	def save(self, path):
 		torch.save(self.model.state_dict(), path)
